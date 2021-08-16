@@ -3,6 +3,7 @@ var coin,coinImg,coin2Img;
 const PLAY = 1;
 const END =0;
 var gameState=PLAY;
+var count = 0;
 
 function preload(){
   piggyBankImg=loadImage("pbank.png");
@@ -20,6 +21,9 @@ function setup() {
   piggyBank.addImage(piggyBankImg)
   piggyBank.scale =0.5;
 
+  chance=createSprite(200,300,40,40);
+  chance.visible = false;
+
 }
 
 
@@ -27,10 +31,12 @@ function draw() {
   background("lightblue");
 
   if(gameState === PLAY){
+    chance.visible =false;
     if(mousePressedOver(coin)){
       coin.addImage(coin2Img);
       coin.scale=0.03;
       coin.velocityY = 5;
+      count = count +1
       gameState = END;
     }
   }
@@ -39,8 +45,22 @@ function draw() {
     textSize(20);
     fill("red");
     text("$$ You added one dollar $$",100,50);
+    text("Coins = " + count,180,30)
+    chance.visible=true;
+    if(mousePressedOver(chance)){
+      reset()
+    }
   }
  
   drawSprites();
   
+}
+function reset(){
+  
+  coin.addImage(coinImg);
+  coin.scale=0.5;
+  coin.x=200;
+  coin.y=100;
+  coin.velocityY = 0;
+  gameState=PLAY;
 }
