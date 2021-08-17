@@ -9,6 +9,7 @@ function preload(){
   piggyBankImg=loadImage("pbank.png");
   coinImg=loadImage("coin.png");
   coin2Img = loadImage("coin2.png");
+  restart = loadImage("goldcoin.png");
 }
 function setup() {
   createCanvas(400, 400);
@@ -21,7 +22,9 @@ function setup() {
   piggyBank.addImage(piggyBankImg)
   piggyBank.scale =0.5;
 
-  chance=createSprite(200,300,40,40);
+  chance=createSprite(330,100,40,40);
+  chance.addImage(restart);
+  chance.scale=0.1;
   chance.visible = false;
 
 }
